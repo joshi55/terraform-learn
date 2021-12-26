@@ -9,8 +9,8 @@ value =
 */
 output "owner" {
 
-    value=data.aws_caller_identity.current 
- 
+  value = data.aws_caller_identity.current
+
 }
 /*
 output "vpc_info" {

@@ -1,7 +1,7 @@
 
 
  resource "aws_vpc" "main" {
-  count = 2
+  count = 0
   cidr_block       = "10.4.${count.index}.0/24"
   instance_tenancy = "default"
 
@@ -11,6 +11,23 @@
   }
 }
  
+
+ 
+
+resource "aws_security_group" "mysecurity" {
+ 
+ dynamic "ingress" {
+    for_each = local.sg
+    content {
+      description = ingress.value.desc
+      from_port   = ingress.value.in
+      to_port     = ingress.value.out
+      protocol    = "tcp"
+      cidr_blocks = ingress.value.cidr_blocks
+    }
+ }
+
+}
 /*
  data "aws_vpc" "selected" {
   id="vpc-0f2379d883cd70548"
