@@ -17,3 +17,8 @@ output "vpc_info" {
 
    value = data.aws_vpc.selected
  }*/
+
+output "current_workspace" {
+
+  value = terraform.workspace
+}
